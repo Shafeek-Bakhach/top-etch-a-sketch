@@ -1,0 +1,6 @@
+.grid-item{
+    height: 100px;
+    width: 100px;
+    background-color: cadetblue;
+    border: solid 1px purple;
+}
