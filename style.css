@@ -1,6 +1,20 @@
-.grid-item{
-    height: 100px;
-    width: 100px;
-    background-color: cadetblue;
+.container{
+    display: flex;
+    height: 900px;
+    width: 1200px;
+    border: solid 1px orangered;
+    flex-direction: column;
+}
+.grid-row{
+    display: flex;
     border: solid 1px purple;
+    gap: 5px;
+    flex-grow: 1;
+}
+.grid-item{
+    background-color: cadetblue;
+    flex-grow: 1;
+    box-sizing: content-box;
+    width: 50px;
+    height: 50px;
 }

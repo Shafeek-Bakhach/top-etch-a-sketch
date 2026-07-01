@@ -17,10 +17,16 @@ const container = document.querySelector(".container");
 // since grid can be changed, then we need to set a variable to hold the grid size, defaulting to 16
 let gridSize = 16;
 // loop and create the same div
-for (let i=1; i <= gridSize; i++){
-    let square = document.createElement("div");
-    square.setAttribute("class", "grid-item");
-    container.appendChild(square);
+// create the same div N times in the space
+for (let x=1; x <= gridSize; x++){
+    let row = document.createElement('div');
+    row.setAttribute("class", "grid-row");
+    for (let i=1; i <= gridSize; i++){
+        let square = document.createElement("div");
+        square.setAttribute("class", "grid-item");
+        row.appendChild(square);
+    }
+    container.appendChild(row);
 }
 
 let changeColor = (e) => {
