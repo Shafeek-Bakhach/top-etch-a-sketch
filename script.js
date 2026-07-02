@@ -1,45 +1,42 @@
 const container = document.querySelector(".container");
-
-
-
-// I'm just trying to figure out how to create and append a square using JS only
-// create an element, set the class all the same (they'll interact the same for now)
-// append the child to the parent (container)
-
-// hover over effect:
-// mouse enters div and then leaves it
-// so div has set color, changes when mouse enters it, and remains that color after mouse has left it
-// divs should have event listeners based on hover, function is to change the css to different color
-
-
-
-// once that's figured out, then it's how to generate x number of squares
-// since grid can be changed, then we need to set a variable to hold the grid size, defaulting to 16
+// Creating the grid
 let gridSize = 16;
-// loop and create the same div
-// create the same div N times in the space
-for (let x=1; x <= gridSize; x++){
-    let row = document.createElement('div');
-    row.setAttribute("class", "grid-row");
-    for (let i=1; i <= gridSize; i++){
-        let square = document.createElement("div");
-        square.setAttribute("class", "grid-item");
-        row.appendChild(square);
+let generateGrid = (n) => {
+    for (let x=1; x <= n; x++){
+        let row = document.createElement('div');
+        row.setAttribute("class", "grid-row");
+        for (let i=1; i <= n; i++){
+            let square = document.createElement("div");
+            square.setAttribute("class", "grid-item");
+            row.appendChild(square);
+        }
+        container.appendChild(row);
     }
-    container.appendChild(row);
 }
-
+generateGrid(gridSize);
+// Hover over color changes
 let changeColor = (e) => {
     let target = e.target;
     target.style.backgroundColor = 'black';
 }
-// Now the individual squares all have the grid-item class
-// create rules for that class in general
-// query selecter only applies it to the first one, need to apply it across all
-
 const gridItem = document.querySelectorAll('.grid-item');
 gridItem.forEach((grid) => grid.addEventListener("mouseenter", changeColor));
-// then use flexbox to arrange them in N x N grid
-// fix padding/margins to make sure it looks good
 
-// then how to set up a button to enter new grid
+// Grid reset
+const resetButton = document.querySelector("button");
+resetButton.addEventListener('click', () => {
+    const newSize = Number(prompt("Enter a grid size under 100"))
+    if (newSize > 100){
+        alert("Can't process number greater than 100");
+    }else{
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        generateGrid(newSize);
+        const gridItem = document.querySelectorAll('.grid-item');
+        gridItem.forEach((grid) => grid.addEventListener("mouseenter", changeColor));
+    }
+})
+// listen for click
+// prompt user for integer
+// generate new grid
