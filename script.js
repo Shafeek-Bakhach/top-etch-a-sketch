@@ -15,9 +15,12 @@ let generateGrid = (n) => {
 }
 generateGrid(gridSize);
 // Hover over color changes
+let currentOpacity = 0.1;
 let changeColor = (e) => {
     let target = e.target;
-    target.style.backgroundColor = 'black';
+    target.style.backgroundColor = 'goldenrod';
+    target.style.opacity = currentOpacity
+    currentOpacity += 0.1
 }
 const gridItem = document.querySelectorAll('.grid-item');
 gridItem.forEach((grid) => grid.addEventListener("mouseenter", changeColor));
